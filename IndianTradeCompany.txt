@@ -1,157 +1,148 @@
-country_decisions = {
-	indian_trade_company = {
+# Unprofitable Trade
+country_event = {
+	id = 4043
+	title = "EVTNAME4043"
+	desc = "EVTDESC4043"
+	picture = MERCHANTS_TALKING_eventPicture
 
-		potential = {
-			NOT = { tag = NED }
-			NOT = { has_country_modifier = hab_ostende_company }
-			NOT = { has_country_flag = trade_company }
-			NOT = {
-				capital_scope = {
-					continent = asia
+	trigger = {
+		has_country_modifier = india_trade_co
+		NOT = {
+			any_owned_province = {
+				OR = {
+					region = west_india_region
+					region = coromandel_region
+					region = deccan_region
+					region = bengal_region
+					region = malaya_region
+					region = moluccas_region
+					region = indonesia_region
+					region = indo_china_region
+					region = burma_region
+					region = japan_region
+					region = south_china_region
+					region = north_china_region
 				}
+				has_port = yes
 			}
-			NOT = {
-				capital_scope = {
-					continent = oceania
-				}
-			}
-			OR = {
-				japan_region = {
-					has_discovered = ROOT
-				}
-				burma_region = {
-					has_discovered = ROOT
-				}
-				west_india_region = {
-					has_discovered = ROOT
-				}
-				coromandel_region = {
-					has_discovered = ROOT
-				}
-				deccan_region = {
-					has_discovered = ROOT
-				}
-				bengal_region = {
-					has_discovered = ROOT
-				}
-				south_china_region = {
-					has_discovered = ROOT
-				}
-				north_china_region = {
-					has_discovered = ROOT
-				}
-			}
-			# to prevent overfeeding of provinces into conquer
-			OR = {
-				ai = no
-				AND = {
-					has_institution = global_trade
-					any_owned_province = {
-						OR = {
-							superregion = india_superregion
-							superregion = china_superregion
-							superregion = east_indies_superregion
-							region = japan_region
-						}
-						has_port = yes
-					}
-				}
-			}
-			num_of_ports = 2
-			NOT = {
-				has_country_modifier = portuguese_india_trade_co
-			}
-			NOT = {
-				has_country_modifier = scottish_india_trade_co
-			}
-		}
-
-		allow = {
-			has_institution = global_trade
-			custom_trigger_tooltip = {
-				tooltip = own_port_province_in_far_east_tooltip
-				any_owned_province = {
-					OR = {
-						superregion = india_superregion
-						superregion = china_superregion
-						superregion = east_indies_superregion
-						region = japan_region
-					}
-					has_port = yes
-				}
-			}
-		}
-
-		effect = {
-			set_country_flag = trade_company
-			add_country_modifier = {
-				name = "india_trade_co"
-				duration = -1
-			}
-			if = {
-				limit = { has_dlc = "Domination" }
-				add_treasury = 300
-			}
-			else = {
-				add_treasury = 200
-				hidden_effect = {
-					if = {
-						limit = {
-							OR = {
-								tag = ENG
-								tag = GBR
-							}
-						}
-						country_event = { id = flavor_eng.9145 days = 1 }
-					}
-				}	
-			}
-		}
-		ai_will_do = {
-			factor = 1
 		}
 	}
+
+	mean_time_to_happen = {
+		months = 24
+		
+		modifier = {
+			factor = 0.9
+			inflation = 10
+		}
+		modifier = {
+			factor = 0.9
+			inflation = 20
+		}
+		modifier = {
+			factor = 0.9
+			num_of_loans = 1
+		}
+		modifier = {
+			factor = 0.9
+			num_of_loans = 2
+		}
+		modifier = {
+			factor = 1.1
+			trader = 2
+		}
+		modifier = {
+			factor = 1.1
+			trader = 3
+		}
+		modifier = {
+			factor = 1.1
+			colonial_governor = 2
+		}
+		modifier = {
+			factor = 1.1
+			colonial_governor = 3
+		}
+	}
+
+	option = {
+		name = "EVTOPTA4043"		# What a disaster!
+		remove_country_modifier = india_trade_co
+		add_prestige = -2
+	}
+}
+
+# Unprofitable Trade 2
+country_event = {
+	id = 4044
+	title = "EVTNAME4043"
+	desc = "EVTDESC4043"
+	picture = MERCHANTS_TALKING_eventPicture
 	
-	expel_foreign_traders = {
-		potential = {
-			any_owned_province = {
-				has_province_modifier = trade_company_factory
+	trigger = {
+		has_country_modifier = dutch_india_trade_co
+		NOT = {
+			any_province = {
+				OR = {
+					region = west_india_region
+					region = coromandel_region
+					region = deccan_region
+					region = bengal_region
+					region = malaya_region
+					region = moluccas_region
+					region = indonesia_region
+					region = indo_china_region
+					region = burma_region
+					region = japan_region
+					region = south_china_region
+					region = north_china_region
+				}
+				country_or_non_sovereign_subject_holds = ROOT
+				has_port = yes
 			}
 		}
+	}
 
-		allow = {
-			has_institution = global_trade
-			is_at_war = no
-			is_free_or_tributary_trigger = yes
-			stability = 2
+	mean_time_to_happen = {
+		months = 24
+		
+		modifier = {
+			factor = 0.9
+			inflation = 10
 		}
+		modifier = {
+			factor = 0.9
+			inflation = 20
+		}
+		modifier = {
+			factor = 0.9
+			num_of_loans = 1
+		}
+		modifier = {
+			factor = 0.9
+			num_of_loans = 2
+		}
+		modifier = {
+			factor = 1.1
+			trader = 2
+		}
+		modifier = {
+			factor = 1.1
+			trader = 3
+		}
+		modifier = {
+			factor = 1.1
+			colonial_governor = 2
+		}
+		modifier = {
+			factor = 1.1
+			colonial_governor = 3
+		}
+	}
 
-		effect = {
-			every_owned_province = {
-				limit = { has_province_modifier = trade_company_factory }
-				remove_province_modifier = trade_company_factory
-			}
-			every_known_country = {
-				limit = {
-					has_institution = global_trade
-					provinces_on_capital_continent_of = ROOT
-					ROOT = {
-						NOT = { provinces_on_capital_continent_of = PREV }
-					}
-				}
-				add_casus_belli = {
-					target = ROOT
-					type = cb_trade_war_triggered
-					months = 60
-				}
-				add_opinion = {
-					who = ROOT
-					modifier = opinion_expelled_traders
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 0
-		}
+	option = {
+		name = "EVTOPTA4043"		# What a disaster!
+		remove_country_modifier = dutch_india_trade_co
+		add_prestige = -2
 	}
 }

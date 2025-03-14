@@ -1,27 +1,26 @@
-country_decisions = {
+########################################
+# Pragmatic Sanction Flavor            #
+########################################
 
-	pragmatic_sanction_decision = {
-		potential = {
-			allows_female_emperor = no
-			NOT = { has_country_flag = pragmatic_sanction }
-			is_part_of_hre = yes
-		}
-		allow = {
-			imperial_influence = 25
-			prestige = 1
-			legitimacy = 90
-			allows_female_emperor = no
-			has_female_heir = yes
-			is_emperor = yes
-		}
-		effect = {
-			add_imperial_influence = -25
-			add_legitimacy = -25
-			country_event = { id = pragmatic_sanction.2 }
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
+namespace = pragmatic_sanction
+
+# The Pragmatic Sanction
+country_event = {
+	id = pragmatic_sanction.2
+	title = "pragmatic_sanction.EVTNAME2"
+	desc = "pragmatic_sanction.EVTDESC2"
+	picture = REFORM_eventPicture
+
+	major = yes
 	
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = pragmatic_sanction
+	}
+
+	option = {
+		name = "pragmatic_sanction.EVTOPTA2"
+		set_allow_female_emperor = yes
+	}
 }
